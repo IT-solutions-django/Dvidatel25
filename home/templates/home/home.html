@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<section class="home-section">
+    <div class="container">
+
+        <img class="home-background" src="{% static 'images/main-bg.png' %}" alt="">
+    
+        <div class="home-content">
+            <div class="upper">
+                <h1>Ремонт, перемотка электродвигателей и оборудования</h1>
+                <p>Ремонт электродвигателей и оборудования - <br> быстро, качественно, надежно</p>
+            </div>
+            <div class="medium">
+                <button class="home-request-button">Оставить заявку</button>
+                <button class="home-calculation-button">Получить расчет</button>
+            </div>
+            <div class="lower">
+                <div class="stat">
+                    <p><span>+12 </span> Лет</p>
+                    <small>На рынке</small>
+                </div>
+                <div class="stat">
+                    <p><span>+80 </span> Двигателей</p>
+                    <small>На рынке</small>
+                </div>
+                <div class="stat">
+                    <p><span>+6 </span> Месяцев</p>
+                    <small>На рынке</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="services-section container">
+    <h2>Услуги по ремонту оборудования </h2>
+    <div class="services-cards">
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+        <div class="service-card">
+            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
+            <p>Ремонт трехфазового электродвигателей</p>
+            <div class="button">
+                <img src="{% static 'images/arrow.svg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stages-section container">
+    <div class="stages-card">
+        <h2>Этапы работы</h2>
+        <div class="stages-row">
+            <div class="stage">
+                <div class="number">1</div>
+                <div class="label">Оставить заявку</div>
+            </div>
+            <img src="{% static 'images/stage-arrow-small.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">2</div>
+                <div class="label">Определение неисправностей двигателя</div>
+            </div>
+            <img src="{% static 'images/stage-arrow-small.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">3</div>
+                <div class="label">Проверка и восстановление посадочных мест</div>
+            </div>
+            <img src="{% static 'images/stage-arrow-small.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">4</div>
+                <div class="label">Извл старой обмотки</div>
+            </div>
+        </div>
+        <div class="stages-row">
+            <div class="stage">
+                <div class="number">5</div>
+                <div class="label">Укладка новой обмотки</div>
+            </div>
+            <img src="{% static 'images/stage-arrow-medium.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">6</div>
+                <div class="label">Сборка схемы</div>
+            </div>
+            <img src="{% static 'images/stage-arrow-big.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">7</div>
+                <div class="label">Пропитка и сушка</div>
+            </div>
+            <img src="{% static 'images/stage-arrow-big.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">8</div>
+                <div class="label">Сбор и запуск двигателя</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>На всех этапах ремонта вы можете рассчитывать на нашу поддержку и экспертное сопровождение. Вместе мы справимся с любой неисправностью и вернем ваш электродвигатель в строй!</p>
+            <button class="stages-request-button">Оставить заявку</button>
+        </div>
+    </div>
+</section>
+
+<section class="about-section container">
+    <div class="about-card">
+        <div class="info">
+            <h2>Почему чинить <br> выгоднее</h2>
+            <p>Ремонт электродвигателей экономически выгоднее покупки нового оборудования. Наша компания специализируется на качественном ремонте и перемотке электрических машин любой сложности. Мы используем современное оборудование и технологии, чтобы вернуть ваше оборудование в рабочее состояние. Ремонт позволяет сэкономить до 50% стоимости нового устройства, при этом сохраняя его эксплуатационные характеристики.</p>
+        </div>
+        <div class="divider"></div>
+        <div class="company">
+            <h2>О нас</h2>
+            <p>Наша компания имеет многолетний опыт в ремонте и обслуживании электродвигателей. Мы располагаем современным оборудованием и квалифицированным персоналом, способным выполнить ремонт любой сложности. Клиенты ценят нас за высокое качество работ, оперативность и разумные цены.</p>
+        </div>
+    </div>
+    <div class="info-panel">
+        <div class="info-panel-container">
+            <div class="info-panel-inner">
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-1.svg' %}" alt="">
+                    <p>Гарантия на работу</p>
+                </div>
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-2.svg' %}" alt="">
+                    <p>Современное оборудование</p>
+                </div>
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-3.svg' %}" alt="">
+                    <p>Быстрые сроки</p>
+                </div>
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-4.svg' %}" alt="">
+                    <p>Опытные специалисты</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="works-section container">
+    <h2>Наши работы</h2>
+    <div class="works swiper">
+        <div class="swiper-wrapper">
+            <div class="work-card swiper-slide">
+                <img src="{% static 'images/service-example.png' %}" alt="">
+                <div class="bottom">
+                    <p class="label">Тип работ:</p>
+                    <p class="text">Ремонт однофазового электродвигателей</p>
+                </div>
+            </div>
+            <div class="work-card swiper-slide">
+                <img src="{% static 'images/service-example.png' %}" alt="">
+                <div class="bottom">
+                    <p class="label">Тип работ:</p>
+                    <p class="text">Ремонт однофазового электродвигателей</p>
+                </div>
+            </div>
+            <div class="work-card swiper-slide">
+                <img src="{% static 'images/service-example.png' %}" alt="">
+                <div class="bottom">
+                    <p class="label">Тип работ:</p>
+                    <p class="text">Ремонт однофазового электродвигателей</p>
+                </div>
+            </div>
+            <div class="work-card swiper-slide">
+                <img src="{% static 'images/service-example.png' %}" alt="">
+                <div class="bottom">
+                    <p class="label">Тип работ:</p>
+                    <p class="text">Ремонт однофазового электродвигателей</p>
+                </div>
+            </div>
+            <div class="work-card swiper-slide">
+                <img src="{% static 'images/service-example.png' %}" alt="">
+                <div class="bottom">
+                    <p class="label">Тип работ:</p>
+                    <p class="text">Ремонт однофазового электродвигателей</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-section">
+    <div class="container">
+        <div id="map">
+
+        </div>
+        <form action="" class="request-form">
+            <div class="upper">
+                <p class="heading">Оставтье заявку</p>
+                <small>Мы свяжемся с вами в ближайшее время, чтобы ответить на все ваши вопросы</small>
+            </div>
+            <div class="inputs">
+                <input type="text" placeholder="Имя">
+                <input type="text" placeholder="Телефон">
+                <button class="home-request-button">Оставить заявку</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block script %}
+<!-- Работы -->
+<script defer>
+    const worksSlider = new Swiper('.works.swiper', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }, 
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+    console.log(worksSlider)
+</script>
+
+
+<script>
+    var myMap;
+    ymaps.ready((function() {
+        myMap = new ymaps.Map("map", {
+            center: [43.157062, 131.926061],
+            zoom: 16,
+            controls: []
+    });
+    var o = new ymaps.control.ZoomControl({
+        options: {
+            position: {
+                right: 10,
+                top: 50
+            },
+            size: "small"
+        }
+    });
+    myMap.controls.add(o), myMap.behaviors.disable("scrollZoom");
+    var a = new ymaps.Placemark([43.157062, 131.926061], {
+        hintContent: "Волгоградская улица, 7А",
+        balloonContent: "Волгоградская улица, 7А"
+    }, {
+        iconLayout: "default#image",
+        iconImageHref: "/static/images/pin.svg",
+        iconImageSize: [30, 42],
+        iconImageOffset: [-15, -42]
+    });
+    myMap.geoObjects.add(a)
+}))
+</script>
+{% endblock %}
