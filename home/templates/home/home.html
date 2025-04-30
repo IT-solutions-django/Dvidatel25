@@ -185,8 +185,17 @@
     </div>
 </section>
 
+
 <section class="works-section container">
     <h2>Наши работы</h2>
+    <div class="works-navigation">
+        <div class="works-button-prev">
+            <img src="{% static 'images/slider-arrow-left.svg' %}" alt="Предыдущий">
+        </div>
+        <div class="works-button-next">
+            <img src="{% static 'images/slider-arrow-right.svg' %}" alt="Следующий">
+        </div>
+    </div>
     <div class="works swiper">
         <div class="swiper-wrapper">
             <div class="work-card swiper-slide">
@@ -231,7 +240,23 @@
 <section class="map-section">
     <div class="container">
         <div id="map">
-
+            <div class="map-info">
+                <p class="heading">Контакты</p>
+                <div class="map-info-content">
+                    <div>
+                        <small>Телефон</small>
+                        <a target="_blank" href="tel:+79147317686">+7 914 731-76-86</a>
+                    </div>
+                    <div>
+                        <small>Адрес</small>
+                        <a target="_blank" href="tel:+79147317686">Уссурийск ул.Фадеева 12, стр. 3</a>
+                    </div>
+                    <div>
+                        <small>Режим работы:</small>
+                        <p target="_blank" href="tel:+79147317686">Пн-Пт с 9.00 до 18.00</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <form action="" class="request-form">
             <div class="upper">
@@ -257,13 +282,9 @@
         slidesPerView: 4,
         spaceBetween: 30,
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.works-navigation .works-button-next',
+            prevEl: '.works-navigation .works-button-prev',
         }, 
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
     });
     console.log(worksSlider)
 </script>

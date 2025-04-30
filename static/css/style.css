@@ -2,15 +2,32 @@
 
 @font-face {
     font-family: "Eastman";
-    src: url("/static/fonts/eastman/EastmanTrial-Regular.otf") format("truetype");
+    src: url("/static/fonts/eastman/Eastman-Regular.ttf") format("truetype");
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
 } 
 
+@font-face {
+    font-family: "Eastman";
+    src: url("/static/fonts/eastman/Eastman-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+} 
+
+@font-face {
+    font-family: "Eastman";
+    src: url("/static/fonts/eastman/Eastman-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+} 
 
 body {
     font-family: var(--font-usual);
-    font-family: 'Inter';
+    
+}
+
+button {
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -64,6 +81,15 @@ header .nav-menu a {
     color: white; 
     font-size: 16px;
     line-height: 20px;
+
+    transition: all 0.3s ease;
+}
+footer .upper .nav-menu a {
+    transition: all 0.3s ease;
+}
+header .nav-menu a:hover, 
+footer .upper .nav-menu a:hover {
+    opacity: 0.7;
 }
 header .right-part {
     display: flex;
@@ -102,11 +128,13 @@ main {
     background: linear-gradient(90deg,rgba(15, 19, 33, 1) 0%, rgba(33, 42, 60, 1) 100%);
     position: relative;
 }
-
 .home-background {
+    right: 0;
+    
     position: absolute;
-    right: calc((100vw - 1300px) / 2);
-    top: 0px;
+    right: 0px;
+    width: 52vw;
+    bottom: 0px;;
 }
 .home-content {
     display: flex;
@@ -128,6 +156,8 @@ h1 {
 }
 .home-content .upper p {
     font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
 }
 .home-content .medium {
     display: flex;
@@ -139,6 +169,8 @@ h1 {
     padding: 15px 25px;
     border-radius: 16px;
     font-size: 16px;
+
+    transition: all 0.3s ease;
 }
 .home-request-button {
     background-color: #4A5C7F;
@@ -389,7 +421,8 @@ footer,
 .works-section {
     display: flex;
     flex-direction: column;
-    gap: 40px
+    gap: 40px;
+    position: relative;
 }
 .work-card {
     height: 295px;
@@ -427,6 +460,50 @@ footer,
     height: 277px;
     max-width: 900px;
     width: 100%;
+    position: relative;
+}
+
+.map-info {
+    position: absolute;
+    left: 51px;
+    bottom: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    width: 216px;
+    height: 250px;
+    background-color: #FFFFFF;
+    padding: 22px 11px 22px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+.map-info .heading {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 20px;
+}
+.map-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.map-info-content small {
+    font-size: 16px;
+    line-height: 20px;
+    color: #777777;
+}
+.map-info-content a, 
+.map-info-content p {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #1E1E1E;
+}
+.map-info-content > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 #map>ymaps {
     border-radius: 40px;
@@ -459,6 +536,9 @@ footer,
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+.request-form .inputs {
+    color: #1C1C1C;
 }
 footer {
     background: linear-gradient(90deg,rgba(15, 19, 33, 1) 0%, rgba(33, 42, 60, 1) 100%);
@@ -510,3 +590,46 @@ footer .lower {
     display: flex;
     justify-content: end;
 }
+
+.home-request-button:hover {
+    background-color: #3D485D;
+}
+.request-button:hover,
+.home-calculation-button:hover { 
+    background-color: #1C222F;
+}
+.stages-request-button:hover {
+    opacity: 0.8;
+}
+.service-card:hover {
+    ::after {
+        transform: rotate(0deg);
+    }
+}
+.service-card::after {
+    transition: transform 0.3s ease;
+}
+.service-card:hover::after {
+    transform: rotate(-4deg) translateY(-7px);
+}
+.works-navigation {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    display: flex;
+    gap: 20px;      
+}
+.works-button-prev,
+.works-button-next {
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.swiper-button-disabled {
+    opacity: 0.6 !important;
+}
+.works-button-prev:hover, 
+.works-button-next:hover {
+    opacity: 0.7;
+}
+
