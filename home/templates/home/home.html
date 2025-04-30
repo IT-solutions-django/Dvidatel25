@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load phone_filters %}
 
 {% block content %}
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <section class="home-section">
     <div class="container">
@@ -15,85 +17,32 @@
                 <p>Ремонт электродвигателей и оборудования - <br> быстро, качественно, надежно</p>
             </div>
             <div class="medium">
-                <button class="home-request-button">Оставить заявку</button>
-                <button class="home-calculation-button">Получить расчет</button>
+                <a href="#map-section" class="home-request-button">Оставить заявку</a>
+                <a href="#map-section" class="home-calculation-button">Получить расчет</a>
             </div>
             <div class="lower">
-                <div class="stat">
-                    <p><span>+12 </span> Лет</p>
-                    <small>На рынке</small>
-                </div>
-                <div class="stat">
-                    <p><span>+80 </span> Двигателей</p>
-                    <small>На рынке</small>
-                </div>
-                <div class="stat">
-                    <p><span>+6 </span> Месяцев</p>
-                    <small>На рынке</small>
-                </div>
+                {% for stat in company_stats %}
+                    <div class="stat">
+                        <p><span>{{ stat.number }} </span> {{ stat.label }}</p>
+                        <small>{{ stat.small_label }}</small>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
-<section class="services-section container">
-    <h2>Услуги по ремонту оборудования </h2>
+<section id="services-section" class="services-section container">
+    <h2>Услуги по ремонту оборудования</h2>
     <div class="services-cards">
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
+        {% for service in services %}
+            <div class="service-card">
+                <img class="service-img" src="{{ service.image.url }}" alt="">
+                <p>{{ service.name }}</p>
+                <a href="#map-section" class="button">
+                    <img src="{% static 'images/arrow.svg' %}" alt="">
+                </a>
             </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
-        <div class="service-card">
-            <img class="service-img" src="{% static 'images/service-example.png' %}" alt="">
-            <p>Ремонт трехфазового электродвигателей</p>
-            <div class="button">
-                <img src="{% static 'images/arrow.svg' %}" alt="">
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 
@@ -144,7 +93,7 @@
         </div>
         <div class="bottom">
             <p>На всех этапах ремонта вы можете рассчитывать на нашу поддержку и экспертное сопровождение. Вместе мы справимся с любой неисправностью и вернем ваш электродвигатель в строй!</p>
-            <button class="stages-request-button">Оставить заявку</button>
+            <a href="#map-section" class="stages-request-button">Оставить заявку</a>
         </div>
     </div>
 </section>
@@ -153,12 +102,12 @@
     <div class="about-card">
         <div class="info">
             <h2>Почему чинить <br> выгоднее</h2>
-            <p>Ремонт электродвигателей экономически выгоднее покупки нового оборудования. Наша компания специализируется на качественном ремонте и перемотке электрических машин любой сложности. Мы используем современное оборудование и технологии, чтобы вернуть ваше оборудование в рабочее состояние. Ремонт позволяет сэкономить до 50% стоимости нового устройства, при этом сохраняя его эксплуатационные характеристики.</p>
+            <p>{{ company_info.why_it_is_cheaper_to_repair }}</p>
         </div>
         <div class="divider"></div>
         <div class="company">
             <h2>О нас</h2>
-            <p>Наша компания имеет многолетний опыт в ремонте и обслуживании электродвигателей. Мы располагаем современным оборудованием и квалифицированным персоналом, способным выполнить ремонт любой сложности. Клиенты ценят нас за высокое качество работ, оперативность и разумные цены.</p>
+            <p>{{ company_info.about_us }}</p>
         </div>
     </div>
     <div class="info-panel">
@@ -186,7 +135,7 @@
 </section>
 
 
-<section class="works-section container">
+<section id="works-section" class="works-section container">
     <h2>Наши работы</h2>
     <div class="works-navigation">
         <div class="works-button-prev">
@@ -198,46 +147,20 @@
     </div>
     <div class="works swiper">
         <div class="swiper-wrapper">
-            <div class="work-card swiper-slide">
-                <img src="{% static 'images/service-example.png' %}" alt="">
-                <div class="bottom">
-                    <p class="label">Тип работ:</p>
-                    <p class="text">Ремонт однофазового электродвигателей</p>
+            {% for work in works %}
+                <div class="work-card swiper-slide">
+                    <img src="{{ work.image.url }}" alt="">
+                    <div class="bottom">
+                        <p class="label">Тип работ:</p>
+                        <p class="text">{{ work.name }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="work-card swiper-slide">
-                <img src="{% static 'images/service-example.png' %}" alt="">
-                <div class="bottom">
-                    <p class="label">Тип работ:</p>
-                    <p class="text">Ремонт однофазового электродвигателей</p>
-                </div>
-            </div>
-            <div class="work-card swiper-slide">
-                <img src="{% static 'images/service-example.png' %}" alt="">
-                <div class="bottom">
-                    <p class="label">Тип работ:</p>
-                    <p class="text">Ремонт однофазового электродвигателей</p>
-                </div>
-            </div>
-            <div class="work-card swiper-slide">
-                <img src="{% static 'images/service-example.png' %}" alt="">
-                <div class="bottom">
-                    <p class="label">Тип работ:</p>
-                    <p class="text">Ремонт однофазового электродвигателей</p>
-                </div>
-            </div>
-            <div class="work-card swiper-slide">
-                <img src="{% static 'images/service-example.png' %}" alt="">
-                <div class="bottom">
-                    <p class="label">Тип работ:</p>
-                    <p class="text">Ремонт однофазового электродвигателей</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<section class="map-section">
+<section class="map-section" id="map-section">
     <div class="container">
         <div id="map">
             <div class="map-info">
@@ -245,27 +168,29 @@
                 <div class="map-info-content">
                     <div>
                         <small>Телефон</small>
-                        <a target="_blank" href="tel:+79147317686">+7 914 731-76-86</a>
+                        
+                        <a target="_blank" href="tel:+{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
                     </div>
                     <div>
                         <small>Адрес</small>
-                        <a target="_blank" href="tel:+79147317686">Уссурийск ул.Фадеева 12, стр. 3</a>
+                        <a target="_blank">{{ company_info.address }}</a>
                     </div>
                     <div>
                         <small>Режим работы:</small>
-                        <p target="_blank" href="tel:+79147317686">Пн-Пт с 9.00 до 18.00</p>
+                        <p>{{ company_info.work_time }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <form action="" class="request-form">
+        <form action="" class="request-form" id="request-form">
+            {% csrf_token %}
             <div class="upper">
-                <p class="heading">Оставтье заявку</p>
+                <p class="heading">Оставьте заявку</p>
                 <small>Мы свяжемся с вами в ближайшее время, чтобы ответить на все ваши вопросы</small>
             </div>
             <div class="inputs">
-                <input type="text" placeholder="Имя">
-                <input type="text" placeholder="Телефон">
+                <input type="text" name="name" required placeholder="Имя">
+                <input type="tel" name="phone" maxlength="18" required placeholder="Телефон">
                 <button class="home-request-button">Оставить заявку</button>
             </div>
         </form>
@@ -294,30 +219,48 @@
     var myMap;
     ymaps.ready((function() {
         myMap = new ymaps.Map("map", {
-            center: [43.157062, 131.926061],
-            zoom: 16,
+            center: [43.833199, 131.937147],
+            zoom: 18,
             controls: []
-    });
-    var o = new ymaps.control.ZoomControl({
-        options: {
-            position: {
-                right: 10,
-                top: 50
-            },
-            size: "small"
-        }
-    });
-    myMap.controls.add(o), myMap.behaviors.disable("scrollZoom");
-    var a = new ymaps.Placemark([43.157062, 131.926061], {
-        hintContent: "Волгоградская улица, 7А",
-        balloonContent: "Волгоградская улица, 7А"
-    }, {
-        iconLayout: "default#image",
-        iconImageHref: "/static/images/pin.svg",
-        iconImageSize: [30, 42],
-        iconImageOffset: [-15, -42]
-    });
-    myMap.geoObjects.add(a)
-}))
+        });
+        var o = new ymaps.control.ZoomControl({
+            options: {
+                position: {
+                    right: 10,
+                    top: 50
+                },
+                size: "small"
+            }
+        });
+        myMap.controls.add(o), myMap.behaviors.disable("scrollZoom");
+        var a = new ymaps.Placemark([43.799217, 131.947627], {
+            hintContent: "Уссурийск, ул.Фадеева 12, стр. 3",
+            balloonContent: "Уссурийск, ул.Фадеева 12, стр. 3"
+        }, {
+            iconLayout: "default#image", 
+            iconImageHref: "/static/images/pin.svg",
+            iconImageSize: [30, 42],
+            iconImageOffset: [-15, -42]
+        });
+        myMap.geoObjects.add(a)
+    }))
+    
+</script>
+
+<script defer>
+    const requestForm = document.getElementById('request-form')
+    requestForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const formData = new FormData(requestForm)
+        
+        axios.post('/save-request/', formData)
+            .then(response => {
+                requestForm.reset();
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        })
 </script>
 {% endblock %}

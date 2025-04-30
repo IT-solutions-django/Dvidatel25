@@ -35,6 +35,9 @@ button {
     margin: 0 auto;
     width: 100%;
 }
+html {
+    scroll-behavior: smooth;
+}
 header {
     height: 90px;
     transition: top 0.3s ease-in-out;
@@ -117,8 +120,14 @@ header .request-button {
     color: white;
     font-size: 16px;
 
+    transition: all 0.3s ease;
 }
 
+#services-section,
+#works-section,
+#map-section {
+    scroll-margin-top: 90px;
+}
 main {
     min-height: 100vh;
 }
@@ -169,6 +178,7 @@ h1 {
     padding: 15px 25px;
     border-radius: 16px;
     font-size: 16px;
+    color: white;
 
     transition: all 0.3s ease;
 }
@@ -277,6 +287,11 @@ footer,
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: all 0.3s ease;
+}
+.service-card .button:hover {
+    background-color: rgb(255, 255, 255, 0.2);
 }
 .stages-card {
     padding: 50px 40px;
@@ -351,6 +366,8 @@ footer,
     color: #161D2C; 
     border-radius: 16px;
     text-wrap: nowrap;
+
+    transition: all 0.3s ease;
 }
 .about-section {
     display: flex;

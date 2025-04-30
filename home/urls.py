@@ -7,4 +7,5 @@ app_name = 'home'
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    path('save-request/', SaveRequestView.as_view(), name='save-request'),
 ]
