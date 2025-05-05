@@ -21,10 +21,32 @@ from django.conf import settings
 from django.conf.urls.static import static 
 
 
+from django.contrib.sitemaps.views import sitemap
+from core.sitemaps import HomeViewSitemap
+
+
+sitemaps = {
+    'home': HomeViewSitemap,
+}
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('home.urls', namespace='home')),
+    
+    re_path(r'^robots\.txt$', serve, {
+        'document_root': settings.BASE_DIR,
+        'path': 'robots.txt',
+    }),
+
+    path(
+        'sitemap.xml',
+        sitemap,
+        {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap',
+    ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

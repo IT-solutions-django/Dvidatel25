@@ -2,5 +2,7 @@ User-agent: *
 
 Allow: /
 Disallow: /admin/
+Disallow: /media/privacy_policy/
+Disallow: /media/personal_data_policy/
 
-Sitemap: http://82.202.128.97
+Sitemap: http://82.202.128.97/sitemap.xml

@@ -921,6 +921,7 @@ footer .lower {
     .stages-card .bottom {
         flex-direction: column;
         gap: 20px;
+        margin-top: 6px;
     }
     .stages-request-button {
         align-self: start;
