@@ -657,7 +657,8 @@ footer .lower {
 .works-navigation {
     position: absolute;
     right: 0;
-    top: 40px;
+    top: 50px;
+    transform: translateY(50%);
     display: flex;
     gap: 20px;      
 }
