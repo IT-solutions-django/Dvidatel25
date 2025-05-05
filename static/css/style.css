@@ -481,6 +481,8 @@ footer,
 .work-card img {
     width: 100%;
     object-fit: cover;
+    height: 164.88px;
+    border-radius: 12.73px;
 }
 .work-card .label {
     text-wrap: nowrap;
