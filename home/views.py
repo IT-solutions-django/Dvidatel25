@@ -26,6 +26,8 @@ class HomeView(View):
             'services': services,
             'works': works,
             'company_stats': company_stats,
+            'privacy_policy': privacy_policy,
+            'personal_data_policy': personal_data_policy,
         }
         return render(request, self.template_name, context)
 
