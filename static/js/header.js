@@ -24,7 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;        
 
         // Скрыть хедер при прокрутке вниз
-        if (st > lastScrollTop && st > navbarHeight){            
+        if (st > lastScrollTop && st > navbarHeight){ 
+            if (document.querySelector('.burger-menu.active')) {
+               return;
+            }
+            
+
             document.querySelector('.header').classList.remove('nav-down');
             document.querySelector('.header').classList.add('nav-up'); 
 

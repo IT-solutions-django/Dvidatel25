@@ -39,6 +39,13 @@
 
 <body>
     <header class="header">
+        <div class="burger-menu">
+            <div class="burger-menu-inner">
+                <a href="#services-section">Услуги</a>
+                <a href="#works-section">Кейсы</a>
+                <a href="#map-section">Контакты</a>
+            </div>
+        </div>
         <div class="container">
             <div class="two-parts">
                 <div class="left-part">
@@ -52,10 +59,13 @@
                 </div>
                 <div class="right-part">
                     <div class="contacts">
-                        <a class="phone" href="tel:+{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
+                        <a class="phone" href="tel:{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
                         <a target="_blank" href="{{ company_info.whatsapp }}"><img src="{% static 'images/whatsapp.svg' %}" alt=""></a>
                     </div>
                     <a href="#map-section" class="request-button">Оставить заявку</a>
+                    <div class="burger-menu-button">
+                        <img src="{% static 'images/burger.svg' %}" alt="Меню">
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,7 +91,7 @@
                 <div class="right-part">
                     <a class="email" href="mailto:{{ company_info.email }}">{{ company_info.email }}</a>
                     <div class="contacts">
-                        <a class="phone" href="tel:+{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
+                        <a class="phone" href="tel:{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
                         <a target="_blank" href="{{ company_info.whatsapp }}"><img src="{% static 'images/whatsapp.svg' %}" alt=""></a>
                     </div>
                 </div>
@@ -110,4 +120,14 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
 
     input.addEventListener("input", validatePhoneNumber);
 });
+</script>
+
+
+<script defer>
+    const burgerMenuButton = document.querySelector('.burger-menu-button');
+    const burgerMenu = document.querySelector('.burger-menu');
+
+    burgerMenuButton.addEventListener('click', () => {
+        burgerMenu.classList.toggle('active');
+    }); 
 </script>
