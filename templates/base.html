@@ -1,0 +1,133 @@
+{% load static %} 
+{% load phone_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Local files -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/header.js' %}"></script>
+
+    <!-- Libraries -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="{% static 'js/imask/Imask.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Logo -->
+    <link rel=icon type=image/png sizes=16x16 href="{% static 'images/logo.svg' %}">
+
+    
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name=description content="{% block description %}{% endblock %}">
+    <meta property=og:title content="{% block meta_title %}{% endblock %}">
+    <meta property=og:description content="{% block meta_description %}{% endblock %}">
+    
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <header class="header">
+        <div class="burger-menu">
+            <div class="burger-menu-inner">
+                <a href="#services-section">Услуги</a>
+                <a href="#works-section">Кейсы</a>
+                <a href="#map-section">Контакты</a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="two-parts">
+                <div class="left-part">
+                    <a href="{% url 'home:home' %}"><img class="" src="{% static 'images/logo.svg' %}" alt=""></a>
+                    <div class="nav-menu">
+                        
+                        <a href="#services-section">Услуги</a>
+                        <a href="#works-section">Кейсы</a>
+                        <a href="#map-section">Контакты</a>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <div class="contacts">
+                        <a class="phone" href="tel:{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
+                        <a target="_blank" href="{{ company_info.whatsapp }}"><img src="{% static 'images/whatsapp.svg' %}" alt=""></a>
+                    </div>
+                    <a href="#map-section" class="request-button">Оставить заявку</a>
+                    <div class="burger-menu-button">
+                        <img src="{% static 'images/burger.svg' %}" alt="Меню">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="upper">
+                <div class="left-part">
+                    <img class="" src="{% static 'images/logo.svg' %}" alt="">
+                    <div class="nav-menu">
+                        <a href="#services-section">Услуги</a>
+                        <a href="#works-section">Кейсы</a>
+                        <a href="#map-section">Контакты</a>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <a class="email" href="mailto:{{ company_info.email }}">{{ company_info.email }}</a>
+                    <div class="contacts">
+                        <a class="phone" href="tel:{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
+                        <a target="_blank" href="{{ company_info.whatsapp }}"><img src="{% static 'images/whatsapp.svg' %}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="lower">
+                <p><a href="{{ privacy_policy.file.url }}">политика конфиденциальности</a> и <a href="{{ personal_data_policy.file.url }}">обработки персональных данных</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+{% block script %}
+{% endblock %}
+
+
+<script defer>
+// Маска
+document.querySelectorAll('input[type="tel"]').forEach(input => {
+    let phoneMask = IMask(input, { mask: "+{7} (000) 000-00-00" });
+
+    function validatePhoneNumber() {
+        let t = input.value.replace(/\D/g, "");
+        return t.length < 11 ? (input.setCustomValidity("Необходимо минимум 11 цифр"), !1) : (input.setCustomValidity(""), !0);
+    }
+
+    input.addEventListener("input", validatePhoneNumber);
+});
+</script>
+
+
+<script defer>
+    const burgerMenuButton = document.querySelector('.burger-menu-button');
+    const burgerMenu = document.querySelector('.burger-menu');
+
+    burgerMenuButton.addEventListener('click', () => {
+        burgerMenu.classList.toggle('active');
+    }); 
+</script>

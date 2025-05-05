@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load phone_filters %}
+
+{% block content %}
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<section class="home-section">
+    <div class="container">
+        <div class="home-content">
+            <div class="upper">
+                <h1>Ремонт, перемотка электродвигателей и оборудования</h1>
+                <p>Ремонт электродвигателей и оборудования - <br> быстро, качественно, надежно</p>
+            </div>
+            <div class="medium">
+                <a href="#map-section" class="home-request-button">Оставить заявку</a>
+                <a href="#map-section" class="home-calculation-button">Получить расчет</a>
+            </div>
+            <img class="home-background" src="{% static 'images/main-bg.png' %}" alt="">
+            <div class="lower">
+                {% for stat in company_stats %}
+                    <div class="stat">
+                        <p><span>{{ stat.number }} </span> {{ stat.label }}</p>
+                        <small>{{ stat.small_label }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<section id="services-section" class="services-section container">
+    <h2 class="x-container">Услуги по ремонту оборудования</h2>
+    <div class="services-swiper swiper">
+        <div class="swiper-wrapper services-cards">
+            {% for service in services %}
+                <div class="service-card swiper-slide">
+                    <img class="service-img" src="{{ service.image.url }}" alt="">
+                    <p>{{ service.name }}</p>
+                    <a href="#map-section" class="button">
+                        <img src="{% static 'images/arrow.svg' %}" alt="">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="stages-section container">
+    <div class="stages-card">
+        <h2>Этапы работы</h2>
+        <div class="stages-row">
+            <div class="stage">
+                <div class="number">1</div>
+                <div class="label">Оставить заявку</div>
+            </div>
+            <img class="only-desktop" src="{% static 'images/stage-arrow-small.svg' %}" alt="">
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">2</div>
+                <div class="label">Определение неисправностей двигателя</div>
+            </div>
+            <img class="only-desktop" src="{% static 'images/stage-arrow-small.svg' %}" alt="">
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">3</div>
+                <div class="label">Проверка и восстановление посадочных мест</div>
+            </div>
+            <img class="only-desktop" src="{% static 'images/stage-arrow-small.svg' %}" alt="">
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">4</div>
+                <div class="label">Извл старой обмотки</div>
+            </div>
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+        </div>
+        <div class="stages-row">
+            <div class="stage">
+                <div class="number">5</div>
+                <div class="label">Укладка новой обмотки</div>
+            </div>
+            <img class="only-desktop" src="{% static 'images/stage-arrow-medium.svg' %}" alt="">
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">6</div>
+                <div class="label">Сборка схемы</div>
+            </div>
+            <img class="only-desktop" src="{% static 'images/stage-arrow-big.svg' %}" alt="">
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">7</div>
+                <div class="label">Пропитка и сушка</div>
+            </div>
+            <img class="only-desktop" src="{% static 'images/stage-arrow-big.svg' %}" alt="">
+            <img class="only-mobile" src="{% static 'images/triangle-arrow-down.svg' %}" alt="">
+            <div class="stage">
+                <div class="number">8</div>
+                <div class="label">Сбор и запуск двигателя</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>На всех этапах ремонта вы можете рассчитывать на нашу поддержку и экспертное сопровождение. Вместе мы справимся с любой неисправностью и вернем ваш электродвигатель в строй!</p>
+            <a href="#map-section" class="stages-request-button">Оставить заявку</a>
+        </div>
+    </div>
+</section>
+
+<section class="about-section container">
+    <div class="about-card">
+        <div class="info">
+            <h2>Почему чинить <br> выгоднее</h2>
+            <p>{{ company_info.why_it_is_cheaper_to_repair }}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="company">
+            <h2>О нас</h2>
+            <p>{{ company_info.about_us }}</p>
+        </div>
+    </div>
+    <div class="info-panel">
+        <div class="info-panel-container">
+            <div class="info-panel-inner">
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-1.svg' %}" alt="">
+                    <p>Гарантия на работу</p>
+                </div>
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-2.svg' %}" alt="">
+                    <p>Современное оборудование</p>
+                </div>
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-3.svg' %}" alt="">
+                    <p>Быстрые сроки</p>
+                </div>
+                <div class="info-obj">
+                    <img src="{% static 'images/info-obj-4.svg' %}" alt="">
+                    <p>Опытные специалисты</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="works-section" class="works-section container">
+    <h2 class="x-container">Наши работы</h2>
+    <div class="works-navigation">
+        <div class="works-button-prev">
+            <img src="{% static 'images/slider-arrow-left.svg' %}" alt="Предыдущий">
+        </div>
+        <div class="works-button-next">
+            <img src="{% static 'images/slider-arrow-right.svg' %}" alt="Следующий">
+        </div>
+    </div>
+    <div class="works swiper">
+        <div class="swiper-wrapper">
+            {% for work in works %}
+                <div class="work-card swiper-slide">
+                    <img src="{{ work.image.url }}" alt="">
+                    <div class="bottom">
+                        <p class="label">Тип работ:</p>
+                        <p class="text">{{ work.name }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="map-section" id="map-section">
+    <div class="container">
+        <div id="map">
+            <div class="map-info">
+                <p class="heading">Контакты</p>
+                <div class="map-info-content">
+                    <div>
+                        <small>Телефон</small>
+                        
+                        <a target="_blank" href="tel:+{{ company_info.phone|phone_link }}">{{ company_info.phone }}</a>
+                    </div>
+                    <div>
+                        <small>Адрес</small>
+                        <a target="_blank">{{ company_info.address }}</a>
+                    </div>
+                    <div>
+                        <small>Режим работы:</small>
+                        <p>{{ company_info.work_time }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="" class="request-form" id="request-form">
+            {% csrf_token %}
+            <div class="upper">
+                <p class="heading">Оставьте заявку</p>
+                <small>Мы свяжемся с вами в ближайшее время, чтобы ответить на все ваши вопросы</small>
+            </div>
+            <div class="inputs">
+                <input type="text" name="name" required placeholder="Имя">
+                <input type="tel" name="phone" maxlength="18" required placeholder="Телефон">
+                <button class="home-request-button">Оставить заявку</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block script %}
+<!-- Работы -->
+<script defer>
+    const worksSlider = new Swiper('.works.swiper', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.works-navigation .works-button-next',
+            prevEl: '.works-navigation .works-button-prev',
+        }, 
+        spaceBetween: 20,
+        breakpoints: {
+            1200: {
+                slidesPerView: 4,
+            },
+            900: {
+                slidesPerView: 3,
+            },
+            600: {
+                slidesPerView: 2,
+            },
+            0: {
+                slidesPerView: 1.4,
+            }
+        }, 
+        slidesOffsetBefore: 16,
+        slidesOffsetAfter: 16,
+    });
+</script>
+
+
+<script>
+    var myMap;
+    ymaps.ready((function() {
+        myMap = new ymaps.Map("map", {
+            center: [43.833199, 131.937147],
+            zoom: 18,
+            controls: []
+        });
+        var o = new ymaps.control.ZoomControl({
+            options: {
+                position: {
+                    right: 10,
+                    top: 50
+                },
+                size: "small"
+            }
+        });
+        myMap.controls.add(o), myMap.behaviors.disable("scrollZoom");
+        var a = new ymaps.Placemark([43.799217, 131.947627], {
+            hintContent: "Уссурийск, ул.Фадеева 12, стр. 3",
+            balloonContent: "Уссурийск, ул.Фадеева 12, стр. 3"
+        }, {
+            iconLayout: "default#image", 
+            iconImageHref: "/static/images/pin.svg",
+            iconImageSize: [30, 42],
+            iconImageOffset: [-15, -42]
+        });
+        myMap.geoObjects.add(a)
+    }))
+    
+</script>
+
+<script defer>
+    const requestForm = document.getElementById('request-form')
+    requestForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const formData = new FormData(requestForm)
+        
+        axios.post('/save-request/', formData)
+            .then(response => {
+                requestForm.reset();
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        })
+</script>
+
+<!-- Услуги -->
+<script defer>
+    function isMobile() {
+        return window.innerWidth < 990;
+    }
+
+    if (isMobile()) {
+        const servicesSlider = new Swiper('.services-swiper.swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            breakpoints: {
+                1200: {
+                    slidesPerView: 4,
+                },
+                900: {
+                    slidesPerView: 3,
+                },
+                600: {
+                    slidesPerView: 2,
+                },
+                0: {
+                    slidesPerView: 1.4,
+                }
+            }, 
+            slidesOffsetBefore: 32,
+            slidesOffsetAfter: 16,
+        });
+    }
+</script>
+
+<script defer>
+    //  burgerMenu = document.querySelector('.burger-menu');
+    const mobileNavLinks = document.querySelectorAll('.burger-menu-inner a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            burgerMenu.classList.remove('active');
+        });
+    });
+</script>
+{% endblock %}
+
+<style>
+.services-swiper {
+    position: relative;
+    padding-bottom: 30px;
+}
+.services-swiper-button-prev,
+.services-swiper-button-next {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.services-swiper-button-prev {
+    left: -20px;
+}
+.services-swiper-button-next {
+    right: -20px;
+}
+@media (max-width: 900px) {
+    .services-swiper-button-prev {
+        left: 0;
+    }
+    .services-swiper-button-next {
+        right: 0;
+    }
+}
+</style>
