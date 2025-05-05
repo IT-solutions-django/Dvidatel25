@@ -272,6 +272,7 @@ footer,
     width: calc((100% - 30px * 3) / 4);
     flex-direction: column;
     gap: 20px;
+    height: 305px !important;
     border-radius: 16px;
     background: linear-gradient(90deg,rgba(15, 19, 33, 1) 0%, rgba(33, 42, 60, 1) 100%);
     padding: 20px;
@@ -470,6 +471,7 @@ footer,
     display: flex !important;
     flex-direction: column;
     gap: 20px;
+    height: 284.14px !important;
     color: white;
 }
 .work-card .bottom {
@@ -484,7 +486,7 @@ footer,
     text-wrap: nowrap;
 }
 .works.swiper .swiper-wrapper {
-    max-width: 1400px !important;
+    max-width: 1300px !important;
 }
 .map-section {
     background: linear-gradient(90deg,rgba(15, 19, 33, 1) 0%, rgba(33, 42, 60, 1) 100%);
@@ -889,6 +891,9 @@ footer .lower {
     .only-mobile {
         display: block;
     }
+    .only-mobile.flex {
+        display: flex;
+    }
     .stages-row img.only-mobile {
         width: 100%;
         display: flex;
@@ -974,6 +979,14 @@ footer .lower {
     .works.swiper .swiper-wrapper {
         max-width: 100vw !important;
     }
+    .work-card {
+        height: 282px !important;
+
+    }
+    .work-card img {
+        height: 161px;
+        border-radius: 16px;
+    }
     .work-card .bottom {
         flex-direction: column;
         gap: 6px;
@@ -1037,6 +1050,10 @@ footer .lower {
     footer .email {
         font-size: 14px;
     }
+    .works-section {
+        gap: 30px;
+    }
+
 }
 @media (max-width: 340px) {
     footer .upper {

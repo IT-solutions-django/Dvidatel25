@@ -2,6 +2,19 @@
 {% load static %}
 {% load phone_filters %}
 
+{% block title %}
+Ремонт, перемотка электродвигателей и оборудования
+{% endblock title %}
+{% block meta_title %}
+Ремонт, перемотка электродвигателей и оборудования
+{% endblock meta_title %}
+{% block description %}
+Ремонт электродвигателей и оборудования - быстро, качественно, надежно
+{% endblock description %}
+{% block meta_description %}
+Ремонт электродвигателей и оборудования - быстро, качественно, надежно
+{% endblock meta_description %}
+
 {% block content %}
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -221,6 +234,8 @@
         breakpoints: {
             1200: {
                 slidesPerView: 4,
+                slidesOffsetBefore: 0,
+                slidesOffsetAfter: 0,
             },
             900: {
                 slidesPerView: 3,
@@ -230,10 +245,10 @@
             },
             0: {
                 slidesPerView: 1.4,
+                slidesOffsetBefore: 16,
+                slidesOffsetAfter: 16,
             }
-        }, 
-        slidesOffsetBefore: 16,
-        slidesOffsetAfter: 16,
+        }
     });
 </script>
 
@@ -297,28 +312,33 @@
         const servicesSlider = new Swiper('.services-swiper.swiper', {
             slidesPerView: 1,
             spaceBetween: 30,
+            slidesOffsetBefore: 0,
+            slidesOffsetAfter: 0,
             breakpoints: {
                 1200: {
                     slidesPerView: 4,
+                    slidesOffsetBefore: 0,
+                    slidesOffsetAfter: 0,
                 },
                 900: {
                     slidesPerView: 3,
+                    slidesOffsetBefore: 32,
+                    slidesOffsetAfter: 16,
                 },
                 600: {
                     slidesPerView: 2,
                 },
                 0: {
                     slidesPerView: 1.4,
+                    slidesOffsetBefore: 32,
+                    slidesOffsetAfter: 16,
                 }
             }, 
-            slidesOffsetBefore: 32,
-            slidesOffsetAfter: 16,
         });
     }
 </script>
 
 <script defer>
-    //  burgerMenu = document.querySelector('.burger-menu');
     const mobileNavLinks = document.querySelectorAll('.burger-menu-inner a');
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
