@@ -10,6 +10,7 @@ services:
       - './nginx.conf:/etc/nginx/nginx.conf'
       - './static:/var/www/static' 
       - './media:/media' 
+      - '../../etc/letsencrypt/archive/eldvidatel25.ru/:/etc/ssl/archive'
     depends_on:
       - backend 
     networks:
