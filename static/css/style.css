@@ -1067,6 +1067,9 @@ footer .lower {
     footer .upper .right-part {
         align-items: start;
     }
+    header .right-part {
+        gap: 6px;
+    }
 }
 
 

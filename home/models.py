@@ -7,6 +7,7 @@ class CompanyInfo(models.Model):
     work_time = models.CharField('Режим работы', max_length=255)
     email = models.EmailField('Email', max_length=255) 
     whatsapp = models.CharField('Whatsapp', max_length=255)
+    telegram = models.CharField('Telegram', max_length=255)
     about_us = models.TextField('О нас')
     why_it_is_cheaper_to_repair = models.TextField('Почему выгоднее чинить')
 
