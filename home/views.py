@@ -8,6 +8,7 @@ from .models import (
     Request, 
     PrivacyPolicy, PersonalDataPolicy
 )
+import requests
 from django.http import JsonResponse
 
 
@@ -38,7 +39,16 @@ class SaveRequestView(View):
         phone = request.POST.get('phone')
         Request.objects.create(name=name, phone=phone)
 
-        # TODO: подключить отправку email через SendMail
+        recipient = 'mr.energia25@mail.ru'
+        ip = '82.202.128.97'
+        url = 'https://sendemail.space/send-email/'
+        data = {
+            'recipient': recipient, 
+            'subject': 'Новая заявка с сайта', 
+            'content': f'Имя: {name}\nТелефон: {phone}',
+            'ip': ip,
+        }
+        response = requests.post(url, data=data) 
 
         return JsonResponse({'success': True})
 
