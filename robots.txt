@@ -5,4 +5,4 @@ Disallow: /admin/
 Disallow: /media/privacy_policy/
 Disallow: /media/personal_data_policy/
 
-Sitemap: http://82.202.128.97/sitemap.xml
+Sitemap: https://eldvidatel25.ru/sitemap.xml

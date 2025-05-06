@@ -4,11 +4,11 @@ from django.shortcuts import reverse
 
 
 class Site: 
-    domain = '82.202.128.97' 
+    domain = 'eldvidatel25.ru' 
 
 
 class BaseSitemap(Sitemap):
-    protocol = 'http' 
+    protocol = 'https' 
     
     def get_urls(self, site=None, **kwargs):
         site = Site()
